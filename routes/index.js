@@ -28,6 +28,7 @@ router.post('/', (req, res, next) => {
       res.render('index', { title: 'Employee Records' , records: data});
     })
   })
-})
+});
+
 
 module.exports = router;
