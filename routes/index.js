@@ -64,5 +64,43 @@ router.post('/search', (req, res, next) => {
 })
 })
 
+router.get('/delete/:id', (req, res, next) => {
+  const id = req.params.id;
+  const del =  empModel.findByIdAndDelete(id);
+  del.exec(function(err, data){
+    if(err) throw err;
+    res.redirect('/')
+  })
+});
+
+router.get('/edit/:id', function(req, res, next) {
+  const id = req.params.id;
+  const edit =  empModel.findById(id);
+
+  edit.exec((err, data) => {
+    if(err) throw new Error();
+    res.render('edit', { title: 'Edit Employee Records' , records: data});
+    console.log(data)
+  })
+});
+
+router.post('/update', function(req, res, next) {
+  
+  const update =  empModel.findByIdAndUpdate(req.body.id, {
+    name: req.body.name,
+    email: req.body.email,
+    eType: req.body.etype,
+    hourlyRate: req.body.hrate,
+    totalHour: req.body.thour,
+    total: parseInt(req.body.hrate) * parseInt(req.body.thour)
+  });
+
+  update.exec((err, data) => {
+    if(err) throw new Error();
+    res.redirect('/');
+    console.log(data)
+  })
+});
+
 
 module.exports = router;

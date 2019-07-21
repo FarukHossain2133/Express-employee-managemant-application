@@ -101,6 +101,21 @@ border-radius: 3px;
 color: white;
 font-size: 20px;
 margin-bottom: 10px;
+animation: legendAnimate 1s infinite linear;
+}
+
+@keyframes legendAnimate {
+  0% {
+    background-color: rgb(1, 100, 1);
+  }
+  50% {
+    background-color: rgb(121, 2, 2);
+
+  }
+  100% {
+    background-color: rgb(1, 100, 1);
+
+  }
 }
 
 .eform form fieldset .form-group {
@@ -157,10 +172,6 @@ margin-bottom: 10px;
 text-transform: uppercase;
 }
 
-#fform form{
-
-}
-
 #fform form label {
 font-size: 16px;
 }
@@ -194,4 +205,42 @@ font-size: 16px;
   border-radius: 3px;
   font-size: 16px;
 }
+#etypee {
+  width: 67.5%;
+  border : 1px solid #777;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #777;
+}
+#etypeee {
+  width: 67.5%;
+  border : 1px solid #777;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
+}
+#btn-edit {
+  color: rgb(3, 129, 3);
+  display: inline-block;
+}
+#btn-delete {
+  float: right;
+  display: inline-block;
+  color: rgb(134, 2, 2);
+  transition: all .3s;
+}
+
+#btn-edit:hover {
+  color: rgb(3, 167, 3);
+  transform: scale(1.1);
+  transition: all .3s;
+
+}
+#btn-delete:hover {
+  color: rgb(172, 3, 3);
+  transform: scale(1.1);
+}
+
+
 
