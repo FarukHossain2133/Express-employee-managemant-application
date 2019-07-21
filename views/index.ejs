@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <table class='table'>
+    <caption><%= title %></caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Employee Type</th>
+          <th>Hourly Rate</th>
+          <th>Total Hours</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% records.forEach(function(data){ %>
+            <tr>
+              <td><%= data.name %></td>
+              <td><%= data.email %></td>
+              <td><%= data.eType %></td>
+              <td><%= data.hourlyRate %></td>
+              <td><%= data.totalHour %></td>
+              <td><%= data.total %></td>
+            </tr>
+          <% }) %>
+      </tbody>
+    </table>
+    
+     <h2 id="fformCaption">Filter Employee Records</h2>
+    <div id="fform">
+         <form action="/search" method="post">
+        <label for="name">By Name</label>
+        <input type="text" id="name" name="filtername"  placeholder="search by name">
+        <label for="email">By Email</label>
+        <input type="text" id="email" name="filteremail"  placeholder="search by email">
+        <label for="etype">By Employee Type</label>
+        <input type="text" id="etype" name="filteretype" placeholder="search by emp type">
+        <input  type="submit" type="button"  value="submit" name="submit" id="fbtn">
+      </form>
+    </div>
+
+    <div class="eform">
+      <form action="/" method="post">
+        <fieldset>
+            <legend>Employee entry form</legend>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="etype">Employee Type</label>
+                <input type="text" id="etype" name="etype" value="" placeholder="Enter etype">
+            </div>
+            <div class="form-group">
+                <label for="hrate">Hourly Rate</label>
+                <input type="number" id="hrate" name="hrate" value="" placeholder="Enter hrate">
+            </div>
+            <div class="form-group">
+                <label for="thour">Total Hours</label>
+                <input type="number" id="thour" name="thour" value="" placeholder="Enter thour">
+            </div>
+              <input class="btn" type="submit" type="button" name="submit" value="submit">
+        </fieldset>
+    </form>
+    </div>
+    
+  </body>
+</html>
