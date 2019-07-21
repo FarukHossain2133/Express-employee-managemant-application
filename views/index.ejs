@@ -5,6 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+  <a id="home" href="/">Home page</a>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
@@ -21,6 +22,7 @@
         </tr>
       </thead>
       <tbody>
+        <% if(records.length > 0){ %>
           <% records.forEach(function(data){ %>
             <tr>
               <td><%= data.name %></td>
@@ -30,7 +32,11 @@
               <td><%= data.totalHour %></td>
               <td><%= data.total %></td>
             </tr>
-          <% }) %>
+          <% })}else{ %>
+              <tr>
+                <td colspan="6">No Result Found</td>
+              </tr>
+          <% } %>
       </tbody>
     </table>
     
@@ -42,7 +48,11 @@
         <label for="email">By Email</label>
         <input type="text" id="email" name="filteremail"  placeholder="search by email">
         <label for="etype">By Employee Type</label>
-        <input type="text" id="etype" name="filteretype" placeholder="search by emp type">
+        <select id="etype" name="filteretype">
+          <option value="hourly">hourly</option>
+          <option value='fixed'>fixed</option>
+        </select>
+        <%# <input type="text" id="etype" name="filteretype" placeholder="search by emp type"> %>
         <input  type="submit" type="button"  value="submit" name="submit" id="fbtn">
       </form>
     </div>

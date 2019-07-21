@@ -20,6 +20,21 @@ a {
 
 /******** Employee table *********/
 
+
+#home {
+ text-decoration: none;
+ background-color: black;
+ color: white;
+ padding: 7px 15px;
+ border-radius: 4px;
+ font-size: 16px;
+ display: inline-block;
+ transition: all .3s;
+}
+#home:hover {
+  transform: scale(1.1)
+}
+
 table{
   width: 100%;
   border: 1px solid rgba(93, 93, 93, 0.466);
@@ -170,5 +185,13 @@ font-size: 16px;
 #fbtn:hover {
   background-color: black;
   color: white;
+}
+
+#etype {
+  padding: 5px 15px;
+  border : 1px solid #777;
+  outline: none;
+  border-radius: 3px;
+  font-size: 16px;
 }
 

@@ -30,5 +30,39 @@ router.post('/', (req, res, next) => {
   })
 });
 
+router.post('/search', (req, res, next) => {
+  const filterName = req.body.filtername;
+  const filterEmail = req.body.filteremail;
+  const filtereType = req.body.filteretype;
+
+  if(filterName !== '' && filterEmail !== '' && filtereType !== ''){
+    var filterParam = { 
+      $and: [{name: filterName},
+        {$and: [{email: filterEmail}, {eType: filtereType}]}
+    ]}
+
+  }else if(filterName !== '' && filterEmail ==='' && filtereType !== ''){
+    var filterParam = { 
+      $and: [{name: filterName}, {eType: filtereType}]}
+
+  }else if(filterName === '' && filterEmail !== '' && filtereType !== ''){
+     var filterParam = { $and: [{email: filterEmail}, {eType: filtereType}]}
+
+    }else if(filterName === '' && filterEmail === '' && filtereType !== ''){
+      var filterParam =  {eType: filtereType}
+ 
+     }else {
+      var filterParam = {}
+    }
+    
+  const employeeFilter = empModel.find(filterParam);
+  
+
+  employeeFilter.exec((err, data) => {
+  if(err) throw err;
+  res.render('index', {title: 'Search Result', records: data})
+})
+})
+
 
 module.exports = router;
