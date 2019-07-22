@@ -1,15 +1,40 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const multer = require('multer')
+const path = require('path')
 const empModel = require('../models/Employee')
 
-var employee = empModel.find({}) 
+const employee = empModel.find({}) 
+
+
+// File Upload 
+router.use(express.static(__dirname+'./public'));
+console.log(__dirname)
+var Storage = multer.diskStorage({
+  destination : './public/uploads',
+  filename:(req, file, cb) => {
+    cb(null, file.fieldname + '_' + Date.now()+path.extname(file.originalname) )
+  }
+});
+
+var upload = multer({
+  storage: Storage
+}).single('file');
+
 /* GET home page. */
+router.post('/upload', upload, (req, res, next)=>{
+  const success = req.file.filename+' uploade successfully';
+  res.render('upload-file', {title: 'Upload Page', success: success})
+})
+router.get('/upload', (req, res, next)=>{
+  res.render('upload-file', {title: 'Upload Page', success: ''})
+})
+
 router.get('/', function(req, res, next) {
   employee.exec((err, data) => {
     if(err) throw new Error();
-    res.render('index', { title: 'Employee Records' , records: data});
+    res.render('index', { title: 'Employee Records' , records: data, success: ''});
   })
- 
 });
 
 router.post('/', (req, res, next) => {
@@ -25,7 +50,7 @@ router.post('/', (req, res, next) => {
     if(err) throw error;
     employee.exec((err, data) => {
       if(err) throw new Error();
-      res.render('index', { title: 'Employee Records' , records: data});
+      res.render('index', { title: 'Employee Records' , records: data, success: 'Data inserted successfully'});
     })
   })
 });
@@ -61,7 +86,7 @@ router.post('/search', (req, res, next) => {
   employeeFilter.exec((err, data) => {
   if(err) throw err;
   res.render('index', {title: 'Search Result', records: data})
-})
+}) 
 })
 
 router.get('/delete/:id', (req, res, next) => {
@@ -69,8 +94,11 @@ router.get('/delete/:id', (req, res, next) => {
   const del =  empModel.findByIdAndDelete(id);
   del.exec(function(err, data){
     if(err) throw err;
-    res.redirect('/')
+    employee.exec((err, data) => {
+      if(err) throw new Error();
+      res.render('index', { title: 'Employee Records' , records: data, success: 'Data deleted successfully'});
   })
+})
 });
 
 router.get('/edit/:id', function(req, res, next) {
@@ -96,9 +124,14 @@ router.post('/update', function(req, res, next) {
   });
 
   update.exec((err, data) => {
-    if(err) throw new Error();
-    res.redirect('/');
-    console.log(data)
+    if(err) throw err;
+  })
+  employee.exec((err, data) => {
+      if(err) throw new Error();
+      res.render('index', { title: 'Employee Records' , records: data, success: 'Data updated successfully'});
+    
+    // res.redirect('/');
+    // console.log(data)
   })
 });
 

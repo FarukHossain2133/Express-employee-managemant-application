@@ -242,5 +242,26 @@ font-size: 16px;
   transform: scale(1.1);
 }
 
+#success {
+  background-color: rgba(0, 128, 0, 0.226);
+  width: 50%;
+  margin: 5px auto;
+  padding: 5px;
+  color: #333;
+  font-size: 20px;
+  border-radius: 5px;
+  animation: animateSuccess .5s infinite linear;
+}
 
+@keyframes animateSuccess {
+  0% {
+    background-color: rgba(0, 128, 0, 0.226);
+  }
+  50% {
+    background-color: rgba(4, 172, 4, 0.226);
+  }
+  100% {
+    background-color: rgba(0, 128, 0, 0.226);
+  }
+}
 

@@ -7,6 +7,11 @@
   </head>
   <body>
   <a id="home" href="/">Home page</a>
+    <% if(success !== '') { %>
+      <div id="success">
+        <strong> success! </strong><%= success %>
+      </div>
+    <% } %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
