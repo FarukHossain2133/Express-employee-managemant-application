@@ -1,0 +1,30 @@
+
+
+    </div>
+    <footer>
+        <div id="desc">
+            <h3>Nothing is imposible</h3>
+            <p>This is simple database management system web application. If you love our website plese share and connect with me form better experience</p>
+        </div>
+        <div>
+            <img id="farukImg" src="/images/faruk.jpg">
+        </div>
+         <div id="right">
+            <p>copyright &copy; 2010-2019</p>
+        </div>
+       
+    </footer>
+    
+    <script>
+    function clock(){
+          var x = document.querySelector('#clock1');
+          var date = new Date();
+           var hour = date.getHours();
+           var minute = date.getMinutes();
+           var seconds = date.getSeconds();
+          x.innerHTML = `${hour}:${minute}:${seconds}`;
+    }
+    setInterval(clock, 1000)
+    </script>
+</body>
+</html>

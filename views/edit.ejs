@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  <a id="home" href="/">Home page</a>
+<%- include('./templates/header.ejs') %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
  
@@ -43,5 +35,5 @@
         </fieldset>
     </form>
     </div>
-  </body>
-</html>
+<%- include('./templates/footer.ejs') %>
+ 

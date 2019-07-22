@@ -7,28 +7,11 @@ const empModel = require('../models/Employee')
 const employee = empModel.find({}) 
 
 
-// File Upload 
-router.use(express.static(__dirname+'./public'));
-console.log(__dirname)
-var Storage = multer.diskStorage({
-  destination : './public/uploads',
-  filename:(req, file, cb) => {
-    cb(null, file.fieldname + '_' + Date.now()+path.extname(file.originalname) )
-  }
+// File upload
+router.get('/upload', (req, res, next) => {
+  res.render('upload-file', { title: 'Upload File Page' , success: ''});
 });
 
-var upload = multer({
-  storage: Storage
-}).single('file');
-
-/* GET home page. */
-router.post('/upload', upload, (req, res, next)=>{
-  const success = req.file.filename+' uploade successfully';
-  res.render('upload-file', {title: 'Upload Page', success: success})
-})
-router.get('/upload', (req, res, next)=>{
-  res.render('upload-file', {title: 'Upload Page', success: ''})
-})
 
 router.get('/', function(req, res, next) {
   employee.exec((err, data) => {
@@ -85,7 +68,7 @@ router.post('/search', (req, res, next) => {
 
   employeeFilter.exec((err, data) => {
   if(err) throw err;
-  res.render('index', {title: 'Search Result', records: data})
+  res.render('index', {title: 'Search Result', records: data, success: ''})
 }) 
 })
 
