@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const router = express.Router();
 const multer = require('multer')
 const path = require('path')
@@ -54,7 +54,7 @@ router.post('/search', (req, res, next) => {
       $and: [{name: filterName}, {eType: filtereType}]}
 
   }else if(filterName === '' && filterEmail !== '' && filtereType !== ''){
-     var filterParam = { $and: [{email: filterEmail}, {eType: filtereType}]}
+      var filterParam = { $and: [{email: filterEmail}, {eType: filtereType}]}
 
     }else if(filterName === '' && filterEmail === '' && filtereType !== ''){
       var filterParam =  {eType: filtereType}
