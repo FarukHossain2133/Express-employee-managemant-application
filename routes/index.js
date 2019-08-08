@@ -8,6 +8,11 @@ const employee = empModel.find({})
 
 
 // File upload
+router.post('/upload', (req, res, next) => {
+  const success = req.file.filename + 'uploaded successfully'
+  res.render('upload-file', { title: 'Upload File Page' , success: ''});
+});
+
 router.get('/upload', (req, res, next) => {
   res.render('upload-file', { title: 'Upload File Page' , success: ''});
 });
