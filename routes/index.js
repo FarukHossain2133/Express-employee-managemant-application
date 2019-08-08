@@ -3,18 +3,46 @@ const router = express.Router();
 const multer = require('multer')
 const path = require('path')
 const empModel = require('../models/Employee')
+const uploadModel = require('../models/Upload')
 
 const employee = empModel.find({}) 
+const imageData = uploadModel.find({}) 
+ 
+router.use(express.static(__dirname+'./public'))
 
+//*********** */ upload Middleware ***************//
 
+var upload = multer({ storage: storage })
+var storage = multer.diskStorage({
+  destination: './public/uploads',
+  filename: function(req, file, cb){
+    cb(null, file.fieldname + '_' + Date.now()+path.extname(file.originalname))
+  }
+});
+
+var upload = multer({storage: storage}).single('file')
 // File upload
-router.post('/upload', (req, res, next) => {
-  const success = req.file.filename + 'uploaded successfully'
-  res.render('upload-file', { title: 'Upload File Page' , success: ''});
+router.post('/upload', upload, (req, res, next) => {
+  var imageFile = req.file.filename;
+  var success = req.file.filename + ' uploaded successfully';
+
+  var imageDetails = new uploadModel({
+    imageName: imageFile
+  })
+  imageDetails.save((err, doc) => {
+    if(err) throw err;
+    imageData.exec((err, data) => {
+      if(err) throw err;
+      res.render('upload-file', { title: 'Upload File Page', records: data, success: success});
+    })
+  })
 });
 
 router.get('/upload', (req, res, next) => {
-  res.render('upload-file', { title: 'Upload File Page' , success: ''});
+   imageData.exec((err, data) => {
+    if(err) throw err; 
+    res.render('upload-file', { title: 'Upload File Page' , records: data, success: ''});
+  })
 });
 
 
@@ -96,7 +124,7 @@ router.get('/edit/:id', function(req, res, next) {
   edit.exec((err, data) => {
     if(err) throw new Error();
     res.render('edit', { title: 'Edit Employee Records' , records: data});
-    console.log(data)
+    
   })
 });
 

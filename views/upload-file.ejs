@@ -1,12 +1,15 @@
 <%- include('./templates/header.ejs') %>
 
-    <h1><%= title %></h1>
     <% if(success !== ''){ %>
         <div id="success">
             <strong> Success! </strong><%= success %>
+           <a id="btn-close"><i class="far fa-times-circle"></i></a>
         </div>
     <% } %>
-    <p>Welcome to <%= title %></p>
+   <div id="titleAll">
+        <h1><%= title %></h1>
+        <p>Welcome to <%= title %></p>
+    </div>
  
     <div class="eform">
       <form  action="/upload" method="post" enctype="multipart/form-data">
@@ -19,6 +22,17 @@
                 <input class="btn" type="submit" type="button" name="submit" value="submit form">
         </fieldset>
      </form>
+    </div>
+
+    <div class="img-container">
+        <div class="row">
+            <% if(records.length > 0 ){ %>
+                <% records.forEach(function(row){ %>
+                    <div class="img">
+                        <img src="./uploads/<%= row.imageName %>">
+                    </div>
+                 <% })} %>
+        </div>    
     </div>
 
 <%- include('./templates/footer.ejs') %>

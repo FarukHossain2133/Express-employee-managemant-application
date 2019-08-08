@@ -20,6 +20,10 @@ a {
 }
 
 
+#titleAll {
+  margin: 20px 0; 
+  text-align: center;
+}
 /******** Employee table *********/
 
 #container {
@@ -31,9 +35,6 @@ a {
     margin: 0 5px;
   }
 }
-
-
-
 
 #navbar{
  background-color: #555;
@@ -74,19 +75,6 @@ a {
 #clock1 {
   cursor: text;
 }
-
-/* #clock1 {
- right: 0;
- background-color: #333;
- color: #aaa;
- padding: 5px;
- border-radius: 3px 0 0 3px;
- box-shadow:0 5px 10px rgba(0, 0, 0, 0.3)
-}
-#clock:hover {
-  background-color: #aaa;
-  color: #333;
-} */
 
 .table-body {
   overflow-x: auto;
@@ -139,8 +127,7 @@ table tr:hover {
 .eform {
   margin-top: 50px;
   width: 100%;
- 
-  
+  margin-bottom: 15px;
 }
 
 
@@ -226,7 +213,17 @@ animation: legendAnimate 1s infinite linear;
 
 /********* Filter Form **********/
 #fformCaption {
-text-transform: uppercase;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px 0;
+}
+#fform {
+  display: flex;
+  border: 1px solid green;
+}
+#fform form {
+  margin: 0 auto;
+  padding: 7px;
 }
 
 #fform form label {
@@ -306,8 +303,9 @@ font-size: 16px;
   padding: 5px;
   color: #333;
   font-size: 20px;
+  display: block;
   border-radius: 5px;
-  animation: animateSuccess .5s infinite linear;
+  /* animation: animateSuccess .5s infinite linear; */
 }
 
 @keyframes animateSuccess {
@@ -321,6 +319,33 @@ font-size: 16px;
     background-color: rgba(0, 128, 0, 0.226);
   }
 }
+
+#btn-close {
+  margin-left: 20px;
+  cursor: pointer;
+  animation: btn-close .5s infinite linear;
+  transition: all .2s;
+  display: inline-block;
+  float: right;
+
+}
+#btn-close:hover {
+  transform: scale(1.2)
+}
+
+@keyframes btn-close {
+  0% {
+    color: green;
+  }
+  50% {
+   color: rgb(2, 41, 2);
+  }
+  100% {
+   color: green;
+  }
+}
+
+
 
 footer {
   background-color: #333;

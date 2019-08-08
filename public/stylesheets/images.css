@@ -1,0 +1,38 @@
+
+.img-container {
+    
+  }
+  
+.img-container .row {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.img-container .row .img {
+    flex: 0 0 23%;
+     transition: all .3s;
+     margin: 10px 0;
+}
+
+.img-container .row .img img {
+    width: 100%;
+    border-radius: 5px;
+   
+}
+
+.img-container .row .img:hover {
+       transform: scale(1.1);
+       outline: 5px solid red;
+       outline-offset: 8px;
+}
+
+@media only screen and (max-width: 600px){
+    .img-container .row .img {
+        flex: 0 0 70%;
+    }
+    
+}
+
+
